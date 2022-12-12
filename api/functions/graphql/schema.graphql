@@ -1,0 +1,26 @@
+scalar Date
+
+type Event {
+  id: ID!
+  name: String!
+  description: String
+  startDate: Date
+  endDate: Date
+}
+
+type Query {
+  getUpcomingEvents(startIndex: Int, endIndex: Int): [Event]
+}
+
+input EventInput {
+  name: String!,
+  description: String,
+  startDate: Date,
+  endDate: Date
+}
+
+type Mutation {
+  createEvent(input: EventInput): Event
+}
+
+
