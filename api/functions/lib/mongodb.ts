@@ -38,18 +38,45 @@ const init = async () => {
     }
 };
 
-// Events
-const findEvents = async () => {
-    return await EventModel.find().where('endDate').gte(Date.now()).sort({ startDate: 'ascending' });
-}
-
 //Users
 const findUserByToken = async (token: string) => {
     return await UserModel.findOne({ token }).select({ token: 0, password: 0 });
 }
 
+// Events
+const findEvents = async () => {
+    return await EventModel.find().where('endDate').gte(Date.now()).sort({ startDate: 'ascending' });
+}
+
+const createEvent = async (name: string, startDate: string, endDate?: string, description?: string) => {
+    return await EventModel.create({
+        name,
+        description,
+        startDate: new Date(startDate),
+        endDate: (endDate) ? new Date(endDate) : new Date(startDate),
+    });
+}
+
+const deleteEvent = async (id: string) => {
+    return await EventModel.deleteOne({ _id: id });
+}
+
+const updateEvent = async (id: string, name: string, startDate: string, endDate?: string, description?: string) => {
+    return await EventModel.findByIdAndUpdate(id, {
+        name,
+        description,
+        startDate: new Date(startDate),
+        endDate: (endDate) ? new Date(endDate) : new Date(startDate),
+    }, {
+        new: true,
+    });
+}
+
 export default {
     init,
-    findEvents,
     findUserByToken,
+    findEvents,
+    createEvent,
+    deleteEvent,
+    updateEvent,
 }

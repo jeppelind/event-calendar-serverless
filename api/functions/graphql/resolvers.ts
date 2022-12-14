@@ -16,7 +16,24 @@ const resolvers: Resolvers = {
             authorize(context.user, Roles.READ);
             const events = await db.findEvents();
             return getEventsSlice(events, startIndex, endIndex);
-        }
+        },
+    },
+    Mutation: {
+        createEvent: async (_, { input }, context) => {
+            authorize(context.user, Roles.WRITE);
+            const { name, startDate, endDate, description } = input;
+            return await db.createEvent(name, startDate, endDate, description);
+        },
+        deleteEvent: async (_, { id }, context) => {
+            authorize(context.user, Roles.WRITE);
+            const result = await db.deleteEvent(id);
+            return result.deletedCount;
+        },
+        updateEvent: async (_, { id, input }, context) => {
+            authorize(context.user, Roles.WRITE);
+            const { name, startDate, endDate, description } = input;
+            return await db.updateEvent(id, name, startDate, endDate, description);
+        } 
     },
     Event: {
         id: event => event._id
