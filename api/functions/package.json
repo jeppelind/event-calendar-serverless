@@ -15,6 +15,7 @@
     "@graphql-tools/load": "^7.8.8",
     "@graphql-tools/schema": "^9.0.12",
     "apollo-server-azure-functions": "^3.11.1",
+    "bcryptjs": "^2.4.3",
     "graphql": "^16.6.0",
     "mongoose": "^6.8.0"
   },
@@ -23,6 +24,7 @@
     "@graphql-codegen/cli": "^2.16.1",
     "@graphql-codegen/typescript": "^2.8.5",
     "@graphql-codegen/typescript-resolvers": "^2.7.10",
+    "@types/bcryptjs": "^2.4.2",
     "@types/node": "16.x",
     "typescript": "^4.0.0"
   }

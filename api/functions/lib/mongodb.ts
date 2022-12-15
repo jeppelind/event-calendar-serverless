@@ -7,13 +7,14 @@ interface EventDocument extends Document {
   description?: string,
   startDate: Date,
   endDate?: Date,
-  errors: any,
 }
 
 interface UserDocument extends Document {
     name: string,
     token: string,
     role: number,
+    email: string,
+    password: string,
 }
 
 const EventSchema = new Schema({
@@ -27,6 +28,8 @@ const userSchema = new Schema({
     name: String,
     token: String,
     role: Number,
+    email: String,
+    password: String,
 });
 
 const EventModel = model<EventDocument>('Event', EventSchema);
@@ -41,6 +44,10 @@ const init = async () => {
 //Users
 const findUserByToken = async (token: string) => {
     return await UserModel.findOne({ token }).select({ token: 0, password: 0 });
+}
+
+const findUserByEmail = async (email: string) => {
+    return await UserModel.findOne({ email });
 }
 
 // Events
@@ -75,6 +82,7 @@ const updateEvent = async (id: string, name: string, startDate: string, endDate?
 export default {
     init,
     findUserByToken,
+    findUserByEmail,
     findEvents,
     createEvent,
     deleteEvent,
