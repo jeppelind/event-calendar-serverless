@@ -1,0 +1,41 @@
+@import '../../colors';
+
+.event {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.event .date {
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: right;
+}
+
+.event:hover .date {
+  color: tint-color($primary, 20);
+}
+
+.event .year {
+  opacity: 0.8;
+}
+
+.event .title {
+  font-weight: 400;
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+.event .description {
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: tint-color($text, 20);
+  margin-bottom: 1rem;
+  margin-top: 0.4rem;
+  text-align: left;
+}
+
+@media only screen and (max-width: 767px) {
+  .event .date {
+    text-align: left;
+  }
+}

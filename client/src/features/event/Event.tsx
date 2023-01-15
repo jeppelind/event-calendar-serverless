@@ -73,11 +73,11 @@ const Event = ({ name, description, startDate, endDate }: EventProps) => {
       <Container>
         <Row className="justify-content-md-center">
           <Col xs={12} md={4} xl={3}>
-            <span className='date'>{formatedDate} <YearDisplay endDate={endDate} /></span>
+            <div className='date'>{formatedDate} <YearDisplay endDate={endDate} /></div>
           </Col>
           <Col xs={12} md={8} xl={7}>
-            <span className="title">{name}</span>
-            <span className="description">{description}</span>
+            <div className="title">{name}</div>
+            <div className="description">{description}</div>
           </Col>
         </Row>
       </Container>

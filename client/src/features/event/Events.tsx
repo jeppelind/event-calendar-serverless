@@ -51,8 +51,6 @@ const Events = () => {
   const [hasFetchedAllEvents, setHasFetchedAllEvents] = useState(false);
   const eventsPerFetch = 50;
 
-
-
   const onScroll = throttle(() => {
     if (hasFetchedAllEvents || events.length <= currentIdx) return;
 
@@ -71,12 +69,19 @@ const Events = () => {
   }, [onScroll]);
 
   useEffect(() => {
+    let unmount = false;
     const asyncFetch = async () => {
       const newEvents = await fetchEvents(currentIdx, currentIdx + eventsPerFetch);
-      setEvents(prevState => [...prevState, ...newEvents]);
-      setHasFetchedAllEvents(newEvents.length < eventsPerFetch);
+      if (!unmount) {
+        setEvents(prevState => [...prevState, ...newEvents]);
+        setHasFetchedAllEvents(newEvents.length < eventsPerFetch);
+      }
     }
     asyncFetch();
+
+    return () => {
+      unmount = true;
+    }
   }, [currentIdx]);
 
   return (

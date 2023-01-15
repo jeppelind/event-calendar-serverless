@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import 'colors';
 @import '~bootstrap/scss/bootstrap';
+
+$body-bg: $background;
+$body-color: $text;
 
 // Fonts
 $font-weight-base: 300;
 $main-font: 'Poppins';
 $font-family-sans-serif: $main-font, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// Navbar
+$navbar-color: hotpink;
+$navbar-light-color: black;
