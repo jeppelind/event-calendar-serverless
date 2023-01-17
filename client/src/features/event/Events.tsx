@@ -14,8 +14,9 @@ const fetchEvents = async (startIndex: number, endIndex: number) => {
       }
     }`;
   try {
+    const url = process.env.REACT_APP_API_URL;
     const token = process.env.REACT_APP_AUTH_TOKEN || '';
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
+    const response = await fetch(`${url}}/graphql`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
