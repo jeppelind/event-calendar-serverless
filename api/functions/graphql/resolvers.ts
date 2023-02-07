@@ -13,7 +13,7 @@ const getEventsSlice = (arr: EventModel[], startIdx: number, endIdx: number) => 
 
 const resolvers: Resolvers = {
     Query: {
-        getUpcomingEvents: async (_, { startIndex, endIndex }, context) => {
+        getUpcomingEvents: async (_, { startIndex, endIndex }) => {
             const cachedEvents = getEventCache();
             if (cachedEvents.length > 0) {
                 return getEventsSlice(cachedEvents, startIndex, endIndex);

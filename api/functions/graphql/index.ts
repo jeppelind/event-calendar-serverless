@@ -17,13 +17,16 @@ const server = new ApolloServer({
   schema: addResolversToSchema({ schema, resolvers }),
   context: async ({ request }) => {
     let token: string = request.headers.authorization || '';
+    await db.init();
+    
+    if (token === '') {
+      return {};
+    }
     if (token.startsWith('Bearer ')) {
         token = token.substring(7);
     }
-
-    await db.init();
+    
     const user = await db.findUserByToken(token);
-
     return { user };
   }
 });
